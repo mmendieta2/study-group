@@ -6,52 +6,53 @@ CSC 481 team project. A web app where students post, find and join study session
 
 ## Team
 
+- Victor Martinez
+- Oscar Hernandez
+- Angel Avila
+- Anthony Farris
 - Maynor Mendieta
-
-(Add your name here in your first pull request.)
 
 ## Setup
 
 ### 1. Install the tools (once)
 
-You need **git** and **fnm** (a Node version manager). The project uses Node 24 (see `.nvmrc`).
+You need **git** and **Node.js 24**.
 
-**macOS**
+**Git**
 
-```bash
-brew install fnm
-echo 'eval "$(fnm env --use-on-cd --shell zsh)"' >> ~/.zshrc
-```
-
-**Windows 11** (PowerShell)
-
-```powershell
-winget install Git.Git
-winget install Schniz.fnm
-```
-
-Then add fnm to your PowerShell profile (run `notepad $PROFILE` and add this line):
-
-```powershell
-fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
-```
-
-**Linux**: install fnm from <https://github.com/Schniz/fnm>, then add the `eval` line above to your shell config (`~/.bashrc` or `~/.zshrc`, with `--shell bash` or `--shell zsh`).
-
-Close and reopen your terminal, then install Node:
+1. Go to <https://git-scm.com/downloads>.
+2. Choose your operating system and follow the instructions on that page. On Windows, download the installer and keep the default options.
+3. Close and reopen your terminal, then check:
 
 ```bash
-fnm install 24
-fnm use 24
-node -v    # should print v24.x.x
+git --version
 ```
 
-> Windows tip: keep the project folder outside OneDrive-synced folders (for example `C:\code`).
+4. Link to your Github account
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+**Node.js 24**
+
+1. Go to <https://nodejs.org/en/download>.
+2. Choose **version 24** (the `v24` LTS line) for your operating system and download the installer. Do not pick 26 or any other version, even if it is the default button. Everyone on the team must use the same version.
+3. Run the installer with the default options.
+4. Close and reopen your terminal, then check:
+
+```bash
+node -v    # must print v24.x.x
+npm -v
+```
+
+If `node -v` prints a different version, another Node is installed on your computer and is being found first. Find out where it is with `which node` (macOS/Linux) or `where node` (Windows), uninstall the old one, or ask the team for help.
 
 ### 2. Get the code and install packages
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/mmendieta2/study-group.git
 cd study-group
 npm ci
 ```
@@ -79,7 +80,3 @@ Open `.env` and set `SESSION_SECRET` to any long random string. Never commit `.e
 - Never commit `.env`, `node_modules/` or `*.db` files. They are already in `.gitignore`.
 - Add a new package only through a pull request (so the lock file stays consistent).
 - File names are `camelCase.js` or all lowercase. Imports must match the case exactly (Linux is case-sensitive).
-
-## Status
-
-Project setup is in progress. Run instructions, the API contract and the file layout will be added here as they are built.
