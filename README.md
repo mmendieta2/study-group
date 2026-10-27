@@ -80,3 +80,19 @@ Open `.env` and set `SESSION_SECRET` to any long random string. Never commit `.e
 - Never commit `.env`, `node_modules/` or `*.db` files. They are already in `.gitignore`.
 - Add a new package only through a pull request (so the lock file stays consistent).
 - File names are `camelCase.js` or all lowercase. Imports must match the case exactly (Linux is case-sensitive).
+
+## Testing 
+
+Run one test file while you work:
+
+```bash
+node --test tests/userModel.test.js
+```
+
+Run all tests before opening a pull request (this is what CI runs):
+
+```bash
+npm test
+```
+
+A passing run ends with `fail 0` in the summary.
