@@ -1,17 +1,12 @@
 const db = require('../db/database');
 
-const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
-const TIME_PATTERN = /^([01]\d|2[0-3]):[0-5]\d$/;
+const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/; // Regex pattern for date validation (YYYY-MM-DD)
+const TIME_PATTERN = /^([01]\d|2[0-3]):[0-5]\d$/; // Regex pattern for time validation (HH:MM)
 const MIN_CAPACITY = 1;
 const MAX_CAPACITY = 100;
 
-
-// ===== ANGEL: create a session =====
-
 // DATA EXAMPLE
 // data ={ course: 'CSC300', title: 'Software Development', date: 'YYYY-MM-DD', time: 'HH:MM', location: 'Room 101', capacity: '5' }
-
-// capacity can be a number (5) or a numeric string ('5').
 
 // Returns null if the data is valid.
 // Otherwise returns a string: the message for the FIRST problem found.
@@ -29,7 +24,6 @@ function createSession(organizerId, data) {
 }
 
 
-// ===== ANTHONY: browse and filter =====
 // A session in the results looks like:
 // { id, course, title, date, time, location, capacity, rsvpCount }
 // rsvpCount is the number of rows in the rsvps table for that session.

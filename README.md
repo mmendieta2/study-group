@@ -47,6 +47,17 @@ node -v    # must print v24.x.x
 npm -v
 ```
 
+If you can't run node or npm commands on powershell try the following command
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+npm -v
+```
+or 
+```powershell
+npm.cmd <input command here>
+```
+
 If `node -v` prints a different version, another Node is installed on your computer and is being found first. Find out where it is with `which node` (macOS/Linux) or `where node` (Windows), uninstall the old one, or ask the team for help.
 
 ### 2. Get the code and install packages

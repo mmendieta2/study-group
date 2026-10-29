@@ -1,5 +1,3 @@
-// Shared test helpers (this file is not a test).
-//
 // Require this BEFORE any model in a test file. It switches the app to a
 // throwaway in-memory database, so tests never touch the real study-group.db.
 process.env.DB_PATH = ':memory:';
@@ -13,7 +11,7 @@ function resetDb() {
     db.exec('DELETE FROM rsvps; DELETE FROM sessions; DELETE FROM users;');
 }
 
-// Inserts a user with plain SQL (no other model needed). Returns the new id.
+// Inserts a user with plain SQL. Returns the new id.
 function makeUser(overrides = {}) {
     count++;
     const user = { name: `User ${count}`, email: `user${count}@example.com`, ...overrides };

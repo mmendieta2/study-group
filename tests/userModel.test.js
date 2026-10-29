@@ -13,7 +13,7 @@ describe('validateRegistration', {todo: true}, () => {
         assert.equal(validateRegistration(validData), null);
     });
 
-    //NAME
+    // NAME
     test('returns message for missing name', () => {
         const missingNameData = { name: '', email: 'user@example.com', password: 'some-password' };
         assert.equal(validateRegistration(missingNameData), 'Name is required');
@@ -23,7 +23,7 @@ describe('validateRegistration', {todo: true}, () => {
         assert.equal(validateRegistration(invalidNameData), 'Name cannot be empty or whitespace only');
     });
 
-    //EMAIL
+    // EMAIL
     test('returns message for missing email', () => { 
         const missingEmailData = { name: 'name222', email: '', password: 'some-password' };
         assert.equal(validateRegistration(missingEmailData), 'Email is required');
@@ -33,7 +33,7 @@ describe('validateRegistration', {todo: true}, () => {
         assert.equal(validateRegistration(invalidEmailData), 'Email is not valid');
     });
 
-    //PASSWORD
+    // PASSWORD
     test('returns message for missing password', () => { 
         const missingPasswordData = { name: 'name222', email: 'user@example.com', password: '' };
         assert.equal(validateRegistration(missingPasswordData), 'Password is required');
