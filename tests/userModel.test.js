@@ -7,7 +7,7 @@ const {
 
 const validData = { name: 'name222', email: 'example@example.com', password: 'some-password' };
 
-describe('validateRegistration', {todo: true}, () => {
+describe('validateRegistration', () => {
     // VALID
     test('should return null for valid registration data', () => {
         assert.equal(validateRegistration(validData), null);
