@@ -45,7 +45,7 @@ function validateRegistration(data)
 
   if (data.password.length > MAX_PASSWORD_LENGTH)
   {
-    return "Password must be at most 72 characters long";
+    return "Password must be no more than 72 characters long";
   }
 
   return null;
