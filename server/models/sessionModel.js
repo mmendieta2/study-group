@@ -23,15 +23,9 @@ function createSession(organizerId, data) {
     throw new Error('TODO: implementation needed');
 }
 
-
 // A session in the results looks like:
 // { id, course, title, date, time, location, capacity, rsvpCount }
 // rsvpCount is the number of rows in the rsvps table for that session.
-
-// Returns the session with that id, or undefined if there is none.
-function getSessionById(id) {
-    throw new Error('TODO: implementation needed');
-}
 
 // filters = { course, date, location } (all optional)
 // Returns an array of sessions sorted by date, then time (earliest first).
@@ -46,6 +40,5 @@ function getSessions(filters) {
 module.exports = {
     validateSession,
     createSession,
-    getSessionById,
     getSessions
 };

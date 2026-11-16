@@ -6,7 +6,6 @@ const { db, resetDb, makeUser, makeSession, makeRsvp } = require('./helpers');
 const {
     validateSession,
     createSession,
-    getSessionById,
     getSessions
 } = require('../server/models/sessionModel');
 
@@ -107,26 +106,6 @@ describe('createSession', {todo: true}, () => {
 });
 
 // ANTHONY
-describe('getSessionById', {todo: true}, () => {
-    test('returns the session with its rsvpCount', () => {
-        const id = makeSession({ course: 'CSC300', title: 'Review', date: '2026-11-05', time: '10:00', location: 'Room 101', capacity: 5 });
-        assert.deepEqual(getSessionById(id), {
-            id, course: 'CSC300', title: 'Review', date: '2026-11-05', time: '10:00', location: 'Room 101', capacity: 5, rsvpCount: 0
-        });
-    });
-    test('counts the rsvps for that session only', () => {
-        const id = makeSession();
-        makeRsvp(id, makeUser());
-        makeRsvp(id, makeUser());
-        makeRsvp(makeSession(), makeUser());
-        assert.equal(getSessionById(id).rsvpCount, 2);
-    });
-    test('returns undefined when the session does not exist', () => {
-        assert.equal(getSessionById(9999), undefined);
-    });
-});
-
-// ANTHONY
 describe('getSessions', {todo: true}, () => {
     const titles = (sessions) => sessions.map((s) => s.title);
 
@@ -134,6 +113,20 @@ describe('getSessions', {todo: true}, () => {
         makeSession({ title: 'A' });
         makeSession({ title: 'B' });
         assert.equal(getSessions({}).length, 2);
+    });
+    test('returns each session with exactly the expected fields', () => {
+        const id = makeSession({ course: 'CSC300', title: 'Review', date: '2026-11-05', time: '10:00', location: 'Room 101', capacity: 5 });
+        assert.deepEqual(getSessions({}), [
+            { id, course: 'CSC300', title: 'Review', date: '2026-11-05', time: '10:00', location: 'Room 101', capacity: 5, rsvpCount: 0 }
+        ]);
+    });
+    test('counts the rsvps of each session separately', () => {
+        const first = makeSession({ date: '2026-11-05' });
+        const second = makeSession({ date: '2026-11-06' });
+        makeRsvp(first, makeUser());
+        makeRsvp(first, makeUser());
+        makeRsvp(second, makeUser());
+        assert.deepEqual(getSessions({}).map((s) => s.rsvpCount), [2, 1]);
     });
     test('sorts by date, then by time (earliest first)', () => {
         makeSession({ title: 'third', date: '2026-11-06', time: '09:00' });
