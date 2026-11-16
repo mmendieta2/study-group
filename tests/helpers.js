@@ -14,10 +14,10 @@ function resetDb() {
 // Inserts a user with plain SQL. Returns the new id.
 function makeUser(overrides = {}) {
     count++;
-    const user = { name: `User ${count}`, email: `user${count}@example.com`, ...overrides };
+    const user = { name: `User ${count}`, email: `user${count}@example.com`, passwordHash: 'not-a-real-hash', ...overrides };
     return db
         .prepare('INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)')
-        .run(user.name, user.email, 'not-a-real-hash').lastInsertRowid;
+        .run(user.name, user.email, user.passwordHash).lastInsertRowid;
 }
 
 // Inserts a session with plain SQL. Any field can be overridden.
