@@ -65,7 +65,8 @@ function findUserByEmail(email)
 // Never include the password hash in the result.
 function findUserById(id) 
 {
-    throw new Error('TODO: implementation needed');
+ const row = db.prepare('SELECT id, name FROM users WHERE id = ?').get(id); 
+ return row;
 }
 
 // Creates a user. The data is already validated (see validateRegistration).

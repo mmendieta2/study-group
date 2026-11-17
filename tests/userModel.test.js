@@ -72,7 +72,7 @@ describe('findUserByEmail', {todo: true}, () => {
     });
 });
 
-describe('findUserById', {todo: true}, () => {
+describe('findUserById', () => {
     test('returns only the id and name of the user', () => {
         const id = makeUser({ name: 'Ana Lopez' });
         assert.deepEqual(findUserById(id), { id, name: 'Ana Lopez' });
