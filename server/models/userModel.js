@@ -81,7 +81,25 @@ function findUserById(id)
 //   (a different letter case counts as the same email)
 function createUser(data) 
 {
-    throw new Error('TODO: implementation needed');
+  const name = data.name.trim();
+  const email = data.email.trim();
+  const hash = bcrypt.hashSync(data.password, SALT_ROUNDS);
+
+  try {
+  const result = db.prepare(
+    'INSERT INTO users (name, email, password_hash) VALUES (?,?,?)'
+    ).run(name, email, hash);
+    
+    return { id: Number(result.lastInsertRowid), name: name};
+  }
+catch (error)
+  {
+    if (error.code === 'SQLITE_CONSTRAINT_UNIQUE')
+    {
+  throw new Error('Email already registered');
+    }
+    throw error;
+  }
 }
 
 // Checks an email and password for login.
