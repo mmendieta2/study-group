@@ -57,7 +57,11 @@ function validateRegistration(data)
 // Never include the password hash in the result.
 function findUserByEmail(email)
 {
-    throw new Error('TODO: implementation needed');
+  const row = db.prepare(
+    'SELECT id, name, email FROM users WHERE email = ?'
+    ).get(email);
+  
+    return row;
 }
 
 // Looks up a user by id.

@@ -58,7 +58,7 @@ describe('validateRegistration', () => {
     });
 });
 
-describe('findUserByEmail', {todo: true}, () => {
+describe('findUserByEmail', () => {
     test('returns the user without the password hash', () => {
         const id = makeUser({ name: 'Ana Lopez', email: 'ana@example.com' });
         assert.deepEqual(findUserByEmail('ana@example.com'), { id, name: 'Ana Lopez', email: 'ana@example.com' });
