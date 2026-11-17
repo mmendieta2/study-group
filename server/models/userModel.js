@@ -55,14 +55,16 @@ function validateRegistration(data)
 // Looks up a user by email. Ignores upper and lower case ('ANA@x.com' finds 'ana@x.com').
 // Returns { id, name, email }, or undefined if no user has that email.
 // Never include the password hash in the result.
-function findUserByEmail(email) {
+function findUserByEmail(email)
+{
     throw new Error('TODO: implementation needed');
 }
 
 // Looks up a user by id.
 // Returns { id, name }, or undefined if no user has that id.
 // Never include the password hash in the result.
-function findUserById(id) {
+function findUserById(id) 
+{
     throw new Error('TODO: implementation needed');
 }
 
@@ -73,7 +75,8 @@ function findUserById(id) {
 // - returns { id, name } of the new user
 // - throws Error('Email already registered') if the email is already used
 //   (a different letter case counts as the same email)
-function createUser(data) {
+function createUser(data) 
+{
     throw new Error('TODO: implementation needed');
 }
 
@@ -81,11 +84,27 @@ function createUser(data) {
 // Returns { id, name } when both are correct. Ignores letter case in the email.
 // Returns null when the email is unknown OR the password is wrong.
 // Both cases must give the same result, so the login page cannot tell which one failed.
-function verifyLogin(email, password) {
-    throw new Error('TODO: implementation needed');
+function verifyLogin(email, password) 
+{
+  const row = db.prepare('SELECT id, name, password_hash FROM users WHERE email = ?').get(email);
+
+  //checking if they exist, if we found them
+  if (!row)
+  {
+    return null;
+  }
+  //checking if to verify the password
+  if (!bcrypt.compareSync(password, row.password_hash))
+  {
+    return null;
+  }
+
+  //now returning id and name
+    return {id:row.id, name: row.name};
 }
 
-module.exports = {
+module.exports = 
+{
     validateRegistration,
     findUserByEmail,
     findUserById,
