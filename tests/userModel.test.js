@@ -111,7 +111,7 @@ describe('createUser', {todo: true}, () => {
     });
 });
 
-describe('verifyLogin', {todo: true}, () => {
+describe('verifyLogin', () => {
     let id;
     beforeEach(() => {
         id = makeUser({ name: 'Ana Lopez', email: 'ana@example.com', passwordHash: bcrypt.hashSync('some-password', 4) });
