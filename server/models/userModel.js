@@ -94,9 +94,8 @@ catch (error)
     {
   throw new Error('Email already registered');
     }
-    throws error;
+    throw error;
   }
-    throw new Error('TODO: implementation needed');
 }
 
 // Checks an email and password for login.
