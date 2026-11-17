@@ -90,7 +90,7 @@ function createUser(data)
   }
 catch (error)
   {
-    if error.code === ('SQLITE_CONSTRAINT_UNIQUE')
+    if (error.code === 'SQLITE_CONSTRAINT_UNIQUE')
     {
   throws new Error('Email already registered');
     }
