@@ -65,7 +65,7 @@ function findUserByEmail(email)
 // Never include the password hash in the result.
 function findUserById(id) 
 {
- const row = db.prepare('SELECT id, name FROM user WHERE id = ?').get(id); 
+ const row = db.prepare('SELECT id, name FROM users WHERE id = ?').get(id); 
  return row;
 }
 
