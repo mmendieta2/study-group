@@ -82,7 +82,7 @@ describe('findUserById', {todo: true}, () => {
     });
 });
 
-describe('createUser', {todo: true}, () => {
+describe('createUser', () => {
     const savedUser = (email) => db.prepare('SELECT * FROM users WHERE email = ?').get(email);
 
     test('returns the id and name of the new user', () => {
