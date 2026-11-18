@@ -19,7 +19,11 @@ function addRsvp(sessionId, userId) {
 // Removes the user's RSVP. Always returns { ok: true },
 // even when the user had no RSVP for that session.
 function removeRsvp(sessionId, userId) {
-    throw new Error('TODO: implementation needed');
+    db.prepare(
+        'DELETE FROM rsvps WHERE session_id = ? AND user_id = ?'
+    ).run(sessionId, userId);
+
+    return { ok: true };
 }
 
 // Returns the sessions the user has an RSVP for, sorted by date, then time (earliest first).

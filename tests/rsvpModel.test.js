@@ -54,7 +54,7 @@ describe('addRsvp', {todo: true}, () => {
     });
 });
 
-describe('removeRsvp', {todo: true}, () => {
+describe('removeRsvp', () => {
     test('removes the rsvp and returns ok', () => {
         const sessionId = makeSession();
         const userId = makeUser();
