@@ -20,7 +20,21 @@ function validateSession(data) {
 // - saves capacity as a whole number (the string '5' is saved as 5)
 // - throws if organizerId is not an existing user (the database rejects it)
 function createSession(organizerId, data) {
-    throw new Error('TODO: implementation needed');
+    const result = db.prepare(`
+        INSERT INTO sessions
+        (organizer_id, course, title, date, time, location, capacity)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(
+        organizerId,
+        data.course.trim(),
+        data.title.trim(),
+        data.date,
+        data.time,
+        data.location.trim(),
+        Number(data.capacity)
+    );
+
+    return { id: result.lastInsertRowid };
 }
 
 // A session in the results looks like:
