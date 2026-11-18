@@ -75,8 +75,8 @@ describe('validateSession', {todo: true}, () => {
 });
 
 // ANGEL
-describe('createSession', {todo: true}, () => {
-    test('returns the id of the new session', () => {
+describe('createSession', () => {    
+test('returns the id of the new session', () => {
         const result = createSession(makeUser(), validData);
         const row = db.prepare('SELECT * FROM sessions WHERE id = ?').get(result.id);
         assert.equal(row.title, 'Software Development');
